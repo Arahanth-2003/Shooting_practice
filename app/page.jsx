@@ -21,7 +21,7 @@ export default function Home() {
         <div className='ml-20'>
             <RandomDiv mode={difficulty} counter={count}/>
         </div>
-        <div className='flex flex-col mr-14'>
+        <div className='flex flex-col mr-12'>
             <div className='mb-5 mt-12'>
                 <label htmlFor="count" className="block text-sm font-medium text-gray-700">Count</label>
                 <input
