@@ -95,23 +95,29 @@ const RandomPositionDiv = (props) => {
   };
 
   return (
-    <div className='flex flex-col justify-center'>
-      <h1 className='text-black'>Score: {score}</h1>
-      {count===counter2 ? <h1 className='text-black'>Count: 0</h1> : <h1> Count: {count}</h1>}
-      <div id="container" className="container">
-        <div
-          id="movingDiv"
-          className="movingDiv"
-          onClick={handleClick}
-        ></div>
+    <div className='flex flex-col ml-5'>
+    <div className='flex flex-row justify-evenly'>
+        <div className='font-bold'>Score: {score}</div>
+        {count===counter2 ? <div className='font-bold'>Count: 0</div> : <div className='font-bold'> Count: {count}</div>}
+    </div>
+    <div className='flex justify-center'>
+        <div id="container" className="container">
+            <div
+            id="movingDiv"
+            className="movingDiv"
+            onClick={handleClick}
+            ></div>
+        </div>
       </div>
-      {!gameStarted && <button class="relative overflow-hidden px-6 py-3 font-bold text-white bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={startGame}>
+    <div className='flex justify-center'>
+    {!gameStarted && <button className="mt-2 relative overflow-hidden px-6 py-3 font-bold text-white bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={startGame}>
             Start
        </button>}
-      
-
+    </div>
 </div>
   );
 };
+
+
 
 export default RandomPositionDiv;

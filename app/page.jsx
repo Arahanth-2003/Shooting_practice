@@ -13,12 +13,15 @@ export default function Home() {
 
 
   return (
-    <div className='flex flex-row justify-evenly'>
-        <div className='flex flex-col justify-center ml-12 inline-block'>
-            <h1 className='text-5xl font-bold text-black'>Shoot the target</h1>
+    <div className='flex flex-col w-full h-full justify-center'>
+    <div className='flex justify-center text-5xl font-bold mb-20 mt-5'>
+        Shoot the target
+    </div>
+    <div className='flex flex-row justify-between p-5'>
+        <div>
             <RandomDiv mode={difficulty} counter={count}/>
         </div>
-        <div>
+        <div className='flex flex-col mr-10'>
             <div className='mb-5 mt-12'>
                 <label htmlFor="count" className="block text-sm font-medium text-gray-700">Count</label>
                 <input
@@ -30,8 +33,7 @@ export default function Home() {
                 required
                 />
             </div>
-
-            <fieldset>
+           <fieldset>
                 <legend className="text-sm font-medium text-gray-700">Difficulty</legend>
                 <div className="mt-2 space-y-2">
                     <div className="flex items-center">
@@ -86,5 +88,8 @@ export default function Home() {
             </fieldset>
         </div>
     </div>
+</div>
   );
 }
+
+

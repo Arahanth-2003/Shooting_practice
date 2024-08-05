@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  @apply relative w-96 h-96 bg-black rounded-lg cursor-crosshair; 
+  @apply relative w-[60vw] h-[60vh] bg-black rounded-lg cursor-crosshair; 
 }
 
 .movingDiv {
