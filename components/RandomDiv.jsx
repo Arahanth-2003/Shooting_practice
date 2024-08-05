@@ -97,8 +97,8 @@ const RandomPositionDiv = (props) => {
   return (
     <div className='flex flex-col ml-5'>
     <div className='flex flex-row justify-evenly'>
-        <div className='font-bold'>Score: {score}</div>
-        {count===counter2 ? <div className='font-bold'>Count: 0</div> : <div className='font-bold'> Count: {count}</div>}
+        <div className='font-bold text-red-600 text-xl'>Score: {score}</div>
+        {count===counter2 ? <div className='font-bold text-red-600 text-xl'>Count: 0</div> : <div className='font-bold text-red-600 text-xl'> Count: {count}</div>}
     </div>
     <div className='flex justify-center'>
         <div id="container" className="container">

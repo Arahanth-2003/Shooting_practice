@@ -14,14 +14,14 @@ export default function Home() {
 
   return (
     <div className='flex flex-col w-full h-full justify-center'>
-    <div className='flex justify-center text-5xl font-bold mb-20 mt-5'>
+    <div className='flex justify-center mt-4 mb-12 text-4xl font-bold gradient-text gradient-text-hover transition-all duration-500'>
         Shoot the target
     </div>
-    <div className='flex flex-row justify-between p-5'>
-        <div>
+    <div className='flex flex-row justify-between p-6'>
+        <div className='ml-20'>
             <RandomDiv mode={difficulty} counter={count}/>
         </div>
-        <div className='flex flex-col mr-10'>
+        <div className='flex flex-col mr-14'>
             <div className='mb-5 mt-12'>
                 <label htmlFor="count" className="block text-sm font-medium text-gray-700">Count</label>
                 <input

@@ -7,9 +7,27 @@ body {
 }
 
 .container {
-  @apply relative w-[60vw] h-[60vh] bg-black rounded-lg cursor-crosshair; 
+  @apply relative w-[60vw] h-[65vh] bg-black rounded-lg cursor-crosshair; 
 }
 
 .movingDiv {
   @apply absolute w-10 h-10 rounded-full cursor-crosshair bg-[url('../public/bullseye.png')] bg-cover;
 }
+
+/* Base gradient text */
+.gradient-text {
+  background: linear-gradient(to right, #14f723, #2643d0); /* Default gradient: blue to pink */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover gradient text */
+.gradient-text-hover:hover {
+  background: linear-gradient(to right, #e40574, #e5f138);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Hover gradient: pink to orange */
+}
+
+
