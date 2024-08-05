@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: white;
+}
+
+.container {
+  @apply relative w-96 h-96 bg-black rounded-lg cursor-crosshair; 
+}
+
+.movingDiv {
+  @apply absolute w-10 h-10 rounded-full cursor-crosshair bg-[url('../public/bullseye.png')] bg-cover;
+}
