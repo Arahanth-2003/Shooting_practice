@@ -11,6 +11,17 @@ const RandomPositionDiv = (props) => {
   const [count, setCount] = useState(counter2);
   const [gameStarted, setGameStarted] = useState(false);
   const intervalId = useRef(null);
+  const [bgChanged, setBgChanged] = useState(false);
+  useEffect(() => {
+    if (bgChanged) {
+      const timer = setTimeout(() => {
+        setBgChanged(false);
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [bgChanged]);
+
   if(mode === "easy"){
     time = 2000;
   }
@@ -51,29 +62,22 @@ const RandomPositionDiv = (props) => {
   }, [count,gameStarted]);
 
   const startGame = () => {
-    setCount((prevCount) => 0);
-    setScore((prevScore) => 0);
+    setCount(0);
+    setScore(0);
     setGameStarted((prev) => !prev);
   }
 
-  const handleClick = (e) => {
-    const element = e.target;
-    element.classList.add('animate-explode');
-    setTimeout(() => {
-      element.classList.remove('animate-explode');
-    }, 250);
+  const handleClick = () => {
+    setBgChanged(true);
     if (count < counter) {
       setScore((prevScore) => prevScore + 1);
       setCount((prevCount) => prevCount + 1);
-
-      // Immediately move the div after click
       const container = document.getElementById('container');
       const movingDiv = document.getElementById('movingDiv');
       const { x, y } = getRandomPosition(container, movingDiv);
       movingDiv.style.left = `${x}px`;
       movingDiv.style.top = `${y}px`;
 
-      // Clear the existing interval and set a new one
       clearInterval(intervalId.current);
       intervalId.current = setInterval(() => {
         setCount((prevCount) => prevCount + 1);
@@ -104,7 +108,8 @@ const RandomPositionDiv = (props) => {
         <div id="container" className="container">
             <div
             id="movingDiv"
-            className="movingDiv"
+            className={`absolute w-10 h-10 rounded-full bg-cover
+             ${ bgChanged ? "bg-[url('../public/focus.gif')]" : "bg-[url('../public/focus.png')]" }`}
             onClick={handleClick}
             ></div>
         </div>
