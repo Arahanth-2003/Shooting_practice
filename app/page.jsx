@@ -81,7 +81,7 @@ export default function Home() {
     if(name !== null){
       fetchData();
     }
-  }, [session,ref]);
+  }, [name,ref]);
 
   
 

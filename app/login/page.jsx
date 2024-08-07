@@ -1,7 +1,7 @@
 'use client'
 
 import { getProviders, signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
+
 
 export default async function LoginPage() {
   const providers = await getProviders();

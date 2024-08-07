@@ -9,6 +9,7 @@ export const authOptions = {
     }),
   ],
   // Add more options here if needed
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);
