@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react';
 import RandomDiv from '@/components/RandomDiv';
 import '../styles/globals.css';
 import { useState,useEffect } from 'react';
@@ -14,27 +15,27 @@ export default function Home() {
   const handleCountChange = (e) => setCount(e.target.value);
   const handleDifficultyChange = (e) => setDifficulty(e.target.value);
   const { data: session } = useSession();
-  const name = (session ? session.user.name : "arahanth");
-  const [stats,setStats] = useState({user:"hello"});
+  const name = (session ? session.user.name : null);
+  const [stats,setStats] = useState([{user:"hello"}]);
 
-  useEffect(() => {
-    async function postData() {
-        try {
-            const response = await fetch('./api/shooter', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({user:name}),
-            });
-            const result = await response.json();
-          } catch (error) {
-            console.error('Error inserting data:', error);
-          }
-    }
+  // useEffect(() => {
+  //   async function postData() {
+  //       try {
+  //           const response = await fetch('./api/shooter', {
+  //             method: 'POST',
+  //             headers: {
+  //               'Content-Type': 'application/json',
+  //             },
+  //             body: JSON.stringify({user:name}),
+  //           });
+  //           const result = await response.json();
+  //         } catch (error) {
+  //           console.error('Error inserting data:', error);
+  //         }
+  //   }
 
-    postData();
-  }, [session]);
+  //   postData();
+  // }, [session]);
 
   useEffect(() => {
     async function fetchData() {
@@ -47,8 +48,9 @@ export default function Home() {
             console.error('Error inserting data:', error);
           }
     }
-
-    fetchData();
+    if(name !== null){
+      fetchData();
+    }
   }, [session]);
 
   
@@ -63,7 +65,7 @@ export default function Home() {
         </div> 
         <div className='flex flex-row justify-between p-6'>
             <div className='ml-20'>
-                <RandomDiv mode={difficulty} counter={count}/>
+                <RandomDiv mode={difficulty} counter={count} user={name}/>
             </div>
             <div className='flex flex-col mr-12'>
                 <div className='mb-5 mt-12'>
@@ -130,7 +132,26 @@ export default function Home() {
                         </div>
                     </div>
                 </fieldset>
-                <div>{stats.user}</div>
+                <div className="mt-4 bg-white p-4 rounded-lg shadow-lg">
+                  <h2 className="text-2xl font-bold mb-4">History</h2>
+                  <div className="overflow-y-auto max-h-64">
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="font-semibold">Difficulty</div>
+                      <div className="font-semibold">Hits</div>
+                      <div className="font-semibold">Count</div>
+                    </div>
+                    <ul>
+                      {stats && stats.map((data) => (
+                        <li key={data._id} className="grid grid-cols-3 gap-4">
+                          <div>{data.difficulty}</div>
+                          <div>{data.hits}</div>
+                          <div>{data.count}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
             </div>
         </div>
     </div>

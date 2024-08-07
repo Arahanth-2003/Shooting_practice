@@ -36,12 +36,34 @@ const RandomPositionDiv = (props) => {
     time = 500
   }
 
+  async function postData() {
+    try {
+        const response = await fetch('./api/shooter', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(
+            {"user":props.user,
+             "difficulty":mode,
+             "count":counter,
+             "hits":score,
+            }),
+        });
+        const result = await response.json();
+      } catch (error) {
+        console.error('Error inserting data:', error);
+      }
+  }
+
   useEffect(() => {
     const moveDiv = () => {
       if (count >= counter && gameStarted) {
         clearInterval(intervalId.current);
         setGameStarted((prev) => !prev);
-        return;
+        if(props.user !== null){
+          postData();
+        }
       }
       if(count < counter){
         const container = document.getElementById('container');

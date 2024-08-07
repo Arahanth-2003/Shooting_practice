@@ -8,7 +8,7 @@ export async function GET(request) {
     const user1 = searchParams.get('user')
     const db = await getDb('shooter');
     const collection = db.collection('shooter_stats');
-    const data = await collection.findOne({user:user1});
+    const data = await collection.find({user:user1}).toArray();
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error fetching data:', error);
