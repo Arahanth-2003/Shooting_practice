@@ -144,7 +144,7 @@ export default function Home() {
                         </div>
                     </div>
                 </fieldset>
-                {(name !== null && stats !== null) && <div className=" bg-white p-4 rounded-lg shadow-lg">
+                {(name !== null && stats !== null) ? <div className=" bg-white p-4 rounded-lg shadow-lg">
                   <h2 className="text-2xl font-bold mb-4">History</h2>
                   <div className="overflow-y-auto max-h-20">
                     <div className="grid grid-cols-3 gap-4">
@@ -163,13 +163,17 @@ export default function Home() {
                     </ul>
                   </div>
                 </div>
+                 : <div className="mt-5 text-center text-2xl font-bold mb-4"> Login to see your History </div>
                 }
+                {(name !== null && stats !== null) ?
                 <div className="bg-white p-4 rounded-lg shadow-lg mt-4">
                   <h1 className="text-center text-2xl font-bold mb-4">Shooting Practice Dashboard</h1>
                   <div className="bg-white p-4 shadow rounded-lg">
                     <AccuracyBarGraph accuracyData={accuracyData} />
                   </div>
                 </div>
+                : <div className="mt-5 text-center text-2xl font-bold mb-4"> Login to see your Accuracies </div>
+                } 
            </div>
         </div>
     </div>
