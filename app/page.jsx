@@ -12,36 +12,54 @@ import AccuracyBarGraph from '../components/AccuracyBarGraph';
 export default function Home() {
   const [count, setCount] = useState(30);
   const [difficulty, setDifficulty] = useState('easy');
-  const handleCountChange = (e) => setCount(e.target.value);
+  const handleCountChange = (e) => {e.target.value !== "" ? setCount(e.target.value) : setCount(0)};
   const handleDifficultyChange = (e) => setDifficulty(e.target.value);
   const { data: session } = useSession();
   const name = (session ? session.user.name : null);
   const [stats,setStats] = useState(null);
+  const [ref,setRef] = useState(false);
+  const refresh = () => {setRef((prev) => !prev)};
   const [accuracyData,setAcc] = useState([0,0,0,0]);
   
-  
   const calculateAccuracy = (stats) => {
-    const accuracy = {
-      easy: 0,
-      medium: 0,
-      hard: 0,
-      extreme: 0,
-    };
-  
-    stats.forEach(stat => {
-      const { difficulty, hits, count } = stat;
-      if (accuracy[difficulty] !== undefined && count > 0) {
-        accuracy[difficulty] = (hits / count) * 100;
-      }
-    });
-  
-    return [
-      accuracy.easy || 0,
-      accuracy.medium || 0,
-      accuracy.hard || 0,
-      accuracy.extreme || 0,
-    ];
+     let e_hits = 0;
+     let m_hits = 0;
+     let h_hits = 0;
+     let ex_hits = 0;
+     let e_count = 0;
+     let m_count = 0;
+     let h_count = 0;
+     let ex_count = 0;
+
+     stats.forEach((stat) => {
+        if(stat.difficulty === "easy"){
+          e_hits = e_hits+stat.hits;
+          e_count = e_count+stat.count;
+        }
+        else if(stat.difficulty === "medium"){
+          m_hits = m_hits+stat.hits;
+          m_count = m_count+stat.count;
+        }
+        else if(stat.difficulty === "hard"){
+          h_hits = h_hits+stat.hits;
+          h_count = h_count+stat.count;
+        }
+        else{
+          ex_hits = ex_hits+stat.hits;
+          ex_count = ex_count+stat.count;
+        }
+     });
+     
+     console.log(e_count);
+     return [
+      (e_count !== 0) ? (e_hits/e_count)*100 : 0,
+      (m_count !== 0) ? (m_hits/m_count)*100 : 0,
+      (h_count !== 0) ? (h_hits/h_count)*100 : 0,
+      (ex_count !== 0) ? (ex_hits/ex_count)*100 : 0
+     ];
   };
+  
+  
   
   useEffect(() => {
     if(stats !== null){
@@ -63,14 +81,14 @@ export default function Home() {
     if(name !== null){
       fetchData();
     }
-  }, [session]);
+  }, [session,ref]);
 
   
 
   return (
     <div className='flex flex-col w-full h-full justify-center'>
         <div className='flex flex-row justify-between'>   
-            <div className='ml-40 mb-10 text-4xl font-bold gradient-text gradient-text-hover transition-all duration-500'>
+            <div className='ml-40 mb-10 text-4xl font-bold gradient-text'>
                 Shoot the target {session && session.user.name}
             </div>
             {!session ? <div className='mr-10 text-2xl font-bold text-black'><Link href="/login">Login</Link></div> : <div className='mr-10'><LogoutButton /></div>}
@@ -85,6 +103,8 @@ export default function Home() {
                     <input
                     id="count"
                     type="number"
+                    step="1"
+                    min="0"
                     value={count}
                     onChange={handleCountChange}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -144,8 +164,11 @@ export default function Home() {
                         </div>
                     </div>
                 </fieldset>
-                {(name !== null && stats !== null) ? <div className=" bg-white p-4 rounded-lg shadow-lg">
-                  <h2 className="text-2xl font-bold mb-4">History</h2>
+                {(name !== null && stats !== null) ? <div className="mt-4 bg-white p-4 rounded-lg shadow-lg">
+                  <div className='flex flex-row justify-between'>
+                    <h2 className="text-2xl font-bold mb-4">History</h2>
+                    <div className="bg-[url('../public/change.png')] bg-contain w-5 h-5" onClick={refresh}></div>
+                  </div>
                   <div className="overflow-y-auto max-h-20">
                     <div className="grid grid-cols-3 gap-4">
                       <div className="font-semibold">Difficulty</div>
@@ -153,7 +176,7 @@ export default function Home() {
                       <div className="font-semibold">Count</div>
                     </div>
                     <ul>
-                      {stats && stats.map((data) => (
+                      {stats && stats.slice().reverse().map((data) => (
                         <li key={data._id} className="grid grid-cols-3 gap-4">
                           <div>{data.difficulty}</div>
                           <div>{data.hits}</div>

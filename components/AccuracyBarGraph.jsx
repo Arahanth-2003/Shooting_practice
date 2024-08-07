@@ -8,17 +8,14 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-// Register Chart.js components and the datalabels plugin
 ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
   Title,
   Tooltip,
-  Legend,
-  ChartDataLabels // Register the datalabels plugin
+  Legend
 );
 
 export default function AccuracyBarGraph({ accuracyData }) {
@@ -45,16 +42,6 @@ export default function AccuracyBarGraph({ accuracyData }) {
       title: {
         display: true,
         text: 'Accuracy by Difficulty',
-      },
-      datalabels: {
-        color: '#ffffff',
-        anchor: 'end',
-        align: 'top',
-        offset: 4,
-        font: {
-          weight: 'bold',
-        },
-        formatter: (value) => `${value}%`, // Format label as percentage
       },
     },
     scales: {

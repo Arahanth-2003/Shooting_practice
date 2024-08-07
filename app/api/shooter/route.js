@@ -1,4 +1,3 @@
-// app/api/insert/route.js
 import getDb from '../../../lib/db';
 import { NextResponse } from 'next/server';
 

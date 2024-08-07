@@ -1,12 +1,13 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import '../styles/globals.css';
+import ProMessage from './ProMessage';
 
 const RandomPositionDiv = (props) => {
   let time = 0;
-  const mode = props.mode;
-  const counter = props.counter;
-  const counter2 = counter+2;
+  let mode = props.mode;
+  let counter = Number(props.counter);
+  let counter2 = Number(counter+2);
   const [score, setScore] = useState(0);
   const [count, setCount] = useState(counter2);
   const [gameStarted, setGameStarted] = useState(false);
@@ -46,7 +47,7 @@ const RandomPositionDiv = (props) => {
           body: JSON.stringify(
             {"user":props.user,
              "difficulty":mode,
-             "count":counter,
+             "count":count,
              "hits":score,
             }),
         });
@@ -62,7 +63,9 @@ const RandomPositionDiv = (props) => {
         clearInterval(intervalId.current);
         setGameStarted((prev) => !prev);
         if(props.user !== null){
-          postData();
+          if(score <= count){
+            postData();
+          }
         }
       }
       if(count < counter){
@@ -84,8 +87,8 @@ const RandomPositionDiv = (props) => {
   }, [count,gameStarted]);
 
   const startGame = () => {
-    setCount(0);
     setScore(0);
+    setCount(0);
     setGameStarted((prev) => !prev);
   }
 
@@ -124,16 +127,17 @@ const RandomPositionDiv = (props) => {
     <div className='flex flex-col ml-5'>
     <div className='flex flex-row justify-evenly'>
         <div className='font-bold text-red-600 text-xl'>Score: {score}</div>
-        {count===counter2 ? <div className='font-bold text-red-600 text-xl'>Count: 0</div> : <div className='font-bold text-red-600 text-xl'> Count: {count}</div>}
+        {count===counter2 ? <div className='font-bold text-red-600 text-xl'>Count: 0</div> : <div className='font-bold text-red-600 text-xl'> Count: {counter}</div>}
     </div>
     <div className='flex justify-center'>
         <div id="container" className="container">
-            <div
+            {gameStarted && <div
             id="movingDiv"
             className={`absolute w-10 h-10 rounded-full bg-cover
              ${ bgChanged ? "bg-[url('../public/focus.gif')]" : "bg-[url('../public/focus.png')]" }`}
             onClick={handleClick}
-            ></div>
+            ></div>}
+            {(score === count && count !== 0 && !gameStarted) && <ProMessage />}
         </div>
       </div>
     <div className='flex justify-center'>
