@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "target_master",
+=======
+  "name": "my-app",
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
@@ -16,11 +21,16 @@
     "chartjs-plugin-datalabels": "^2.2.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.24",
+=======
+    "chart.js": "^4.4.3",
+    "chartjs-plugin-datalabels": "^2.2.0",
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
     "mongodb": "^6.8.0",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
+<<<<<<< HEAD
     "react-dom": "^18",
     "tailwind-merge": "^2.4.0"
   },
@@ -33,5 +43,14 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+=======
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
   }
 }

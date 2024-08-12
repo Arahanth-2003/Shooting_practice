@@ -2,8 +2,11 @@
 import { useEffect, useState, useRef } from 'react';
 import '../styles/globals.css';
 import ProMessage from './ProMessage';
+<<<<<<< HEAD
 import { Cover } from './Cover';
 
+=======
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
 
 const RandomPositionDiv = (props) => {
   let time = 0;
@@ -126,14 +129,22 @@ const RandomPositionDiv = (props) => {
   };
 
   return (
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
     <div className='flex flex-col ml-5'>
     <div className='flex flex-row justify-evenly'>
         <div className='font-bold text-red-600 text-xl'>Score: {score}</div>
         {count===counter2 ? <div className='font-bold text-red-600 text-xl'>Count: 0</div> : <div className='font-bold text-red-600 text-xl'> Count: {counter}</div>}
     </div>
+<<<<<<< HEAD
     <div className='flex justify-center z-10 glowing-border-wrapper'>
         <div id="container" className="container glowing-border">
+=======
+    <div className='flex justify-center'>
+        <div id="container" className="container">
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
             {gameStarted && <div
             id="movingDiv"
             className={`absolute w-10 h-10 rounded-full bg-cover
@@ -144,12 +155,20 @@ const RandomPositionDiv = (props) => {
         </div>
       </div>
     <div className='flex justify-center'>
+<<<<<<< HEAD
     {!gameStarted && <button className="text-4xl md:text-2xl lg:text-4xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white" onClick={startGame}>
            <Cover>Start</Cover>
        </button>}
     </div>
 </div>
 
+=======
+    {!gameStarted && <button className="mt-2 relative overflow-hidden px-6 py-3 font-bold text-white bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={startGame}>
+            Start
+       </button>}
+    </div>
+</div>
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
   );
 };
 

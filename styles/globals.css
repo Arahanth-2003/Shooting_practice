@@ -6,6 +6,7 @@
   @apply relative w-[60vw] h-[65vh] bg-black rounded-lg cursor-crosshair; 
 }
 
+<<<<<<< HEAD
 @keyframes glow {
   0%, 100% {
     color: #333; /* Dark gray */
@@ -14,10 +15,23 @@
   50% {
     color: #1a2d87; /* Dark blue */
     text-shadow: 0 0 20px rgba(26, 45, 135, 0.7);
+=======
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
   }
 }
 
 .gradient-text {
+<<<<<<< HEAD
   font-size: 2rem;
   animation: glow 3s infinite;
 }
@@ -49,6 +63,14 @@
   z-index: -1;
   filter: blur(10px);
   opacity: 0.7;
+=======
+  background: linear-gradient(90deg, #121212, #2f0889,#2f0889, #121212);
+  background-size: 400% 400%;
+  animation: gradientShift 4s infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
 }
 
 @keyframes slide-up {
@@ -83,6 +105,7 @@
   transform: translate(-50%, -50%);
 }
 
+<<<<<<< HEAD
 .circular-div {
   @apply w-12 h-12 rounded-full bg-green-500 relative flex items-center justify-center text-white font-bold cursor-pointer;
 }
@@ -94,4 +117,7 @@
 .logout-button {
   @apply bg-red-500 text-white border-none py-1 px-3 rounded cursor-pointer;
 }
+=======
+
+>>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
 
