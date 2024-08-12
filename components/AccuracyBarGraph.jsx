@@ -25,11 +25,7 @@ export default function AccuracyBarGraph({ accuracyData }) {
       {
         label: 'Accuracy',
         data: accuracyData,
-<<<<<<< HEAD
         backgroundColor: ['#2e7d32', '#e67c00', '#c62828', '#6a1b9a'],
-=======
-        backgroundColor: ['#4caf50', '#ff9800', '#f44336', '#9c27b0'],
->>>>>>> 6b3b9bf63c58d810b4e6ed29105ada5f874171ad
         borderColor: ['#388e3c', '#f57c00', '#d32f2f', '#7b1fa2'],
         borderWidth: 1,
       },
