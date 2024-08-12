@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply relative w-[60vw] h-[65vh] bg-black rounded-lg cursor-crosshair; 
+}
+
+@keyframes glow {
+  0%, 100% {
+    color: #333; /* Dark gray */
+    text-shadow: 0 0 5px rgb(107 114 128,0);
+  }
+  50% {
+    color: #1a2d87; /* Dark blue */
+    text-shadow: 0 0 20px rgba(26, 45, 135, 0.7);
+  }
+}
+
+.gradient-text {
+  font-size: 2rem;
+  animation: glow 3s infinite;
+}
+
+.glowing-border-wrapper {
+  position: relative;
+  border-radius: 10px;
+  padding: 2px; /* Slight padding to create the glowing border effect */
+  background: linear-gradient(to right, #2e7d32, #e67c00, #c62828, #6a1b9a);
+}
+
+.glowing-border {
+  padding: 20px;
+  border-radius: 8px; /* Slightly smaller radius to fit inside the wrapper */
+  background-color: black; /* Adjust to match your container's background color */
+  position: relative;
+  z-index: 2;
+}
+
+.glowing-border-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: inherit;
+  background: linear-gradient(to right, #2e7d32, #e67c00, #c62828, #6a1b9a);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.7;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.pro-message {
+  animation: slide-up 3s ease-in-out;
+  animation-iteration-count: 1;
+  width: auto;
+  height: auto; 
+  max-width: 10rem; 
+  max-height: 10rem; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circular-div {
+  @apply w-12 h-12 rounded-full bg-green-500 relative flex items-center justify-center text-white font-bold cursor-pointer;
+}
+
+.logout-menu {
+  @apply absolute top-16 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 p-2 rounded-md flex justify-center;
+}
+
+.logout-button {
+  @apply bg-red-500 text-white border-none py-1 px-3 rounded cursor-pointer;
+}
+
