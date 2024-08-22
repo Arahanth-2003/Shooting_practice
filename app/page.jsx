@@ -206,7 +206,7 @@ export default function Home() {
                 }
                 {(name !== null && stats !== null) ?
                 <div className="bg-gray-500 p-4 rounded-lg shadow-lg mt-4">
-                  <h1 className="text-center text-2xl mb-4">{name}'s Dashboard</h1>
+                  <h1 className="text-center text-2xl mb-4">{name} Dashboard</h1>
                   <div className="bg-slate-300 p-4 shadow rounded-lg z-10">
                     <AccuracyBarGraph accuracyData={accuracyData} />
                   </div>
