@@ -6,10 +6,7 @@ export async function POST(request) {
     const data = await request.json();
     const db = await getDb('shooter');
     const collection = db.collection('shooter_stats');
-    const check = await collection.findOne(data);
-    if(check === null){
-        const result = await collection.insertOne(data);
-    }
+    const result = await collection.insertOne(data);
     return NextResponse.json({ success: true});
   } catch (error) {
     console.error('Error inserting data:', error);
